@@ -640,9 +640,11 @@ $iso_ts   = date( 'c', strtotime( $start_dt ) );
           <!-- Full Description -->
           <div class="event-section-title"><?php esc_html_e('About this event', 'wp-event-manager'); ?></div>
           <div style="margin-bottom:1.5em; color:#333; line-height:1.7;">
-            <?php do_action('single_event_overview_start');
-            echo esc_attr(apply_filters('wpem_the_content', $event->post_content));
-            do_action('single_event_overview_end'); ?>
+            <?php
+            do_action( 'single_event_overview_start' );
+            echo wp_kses_post( wpautop( apply_filters( 'wpem_the_content', $event->post_content ) ) );
+            do_action( 'single_event_overview_end' );
+            ?>
           </div>
           <!-- Event description section end-->
           <?php
